@@ -3,18 +3,22 @@
 
 
 ```shell
-npm install grunt-commandL10n --save-dev
+npm install grunt-commandl10n --save-dev
 ```
 
 Once the plugin has been installed, add this line to your Gruntfile:
 
 ```js
-grunt.loadNpmTasks('grunt-commandL10n');
+grunt.loadNpmTasks('grunt-commandl10n');
 ```
 
-## Add the task - "commandL10n"
+### Add the task - "commandL10n"
+Register a new task
+```js
+grunt.registerTask('L10n', ['commandL10n:files']);
+```
 
-### Overview
+### Update the config settings
 In your project's Gruntfile, add a section named `commandL10n` to the data object passed into your config settings, `grunt.initConfig()`.
 
 ```js
