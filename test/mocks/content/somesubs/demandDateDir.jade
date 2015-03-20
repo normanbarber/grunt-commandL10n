@@ -1,0 +1,6 @@
+script(id="demand-date-dir", type='text/ng-template')
+    div(class="widget")
+        div(class="widget-section")
+            button(class='btn btn-primary', data-ng-click='prev()', data-ng-disabled='prevDateDisabled') #{__("previous day")}
+            &nbsp;&nbsp;
+            button(class='btn btn-primary', data-ng-click='next()') #{__("next day")}

@@ -1,0 +1,39 @@
+{
+	"name": "grunt-commandl10n",
+	"version": "0.0.1",
+	"description": "Identifies unused localization key/value pairs in a project",
+	"repository":{
+		"type": "git",
+		"url": "git://github.com/normanbarber/grunt-commandL10n.git"
+	},
+	"author": {
+		"name": "Norman Barber",
+		"email": "normanebarber@gmail.com",
+		"url": ""
+	},
+	"keywords": [
+		"gruntplugin, localization, unused localization, localization cleanup, extra locales"
+	],
+	"main": "Gruntfile.js",
+	"engines": {
+		"node": ">= 0.8.0"
+	},
+	"license": "MIT",
+	"dependencies":{
+		"lodash-node": "*",
+		"q": "*",
+		"walkdir": "*",
+		"chai": "*",
+		"mocha": "*",
+		"sinon": "*",
+		"sinon-chai": "*",
+		"sandboxed-module": "*"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.2",
+		"load-grunt-tasks": "~0.3.0"
+	},
+	"scripts": {
+		"test": "grunt test"
+	}
+}
