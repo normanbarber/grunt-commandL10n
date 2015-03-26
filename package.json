@@ -12,11 +12,11 @@
 		"url": ""
 	},
 	"keywords": [
-		"gruntplugin, localization, unused localization, localization cleanup, extra locales"
+		"gruntplugin, localization, locale, L10n, unused localization, localization file cleanup, clean L10n"
 	],
 	"main": "Gruntfile.js",
 	"engines": {
-		"node": ">= 0.8.0"
+		"node": ">= 0.10.0"
 	},
 	"license": "MIT",
 	"dependencies":{
