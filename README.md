@@ -1,6 +1,7 @@
 # grunt-commandL10n
 > NOTE: currently in development. working thru some things
-> Identifies unused localization key/value pairs in a project. Recursively reads the directory and its sub-directories, comparing localization string variables from the view with the locale file(ie en.json) key/value pairs
+
+Identifies unused localization key/value pairs in a project. Recursively reads the directory and its sub-directories, comparing localization string variables from the view with the locale file(ie en.json) key/value pairs
 
 
 ```shell
