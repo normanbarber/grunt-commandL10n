@@ -4,18 +4,17 @@
 Identifies unused localization key/value pairs in a project. Recursively reads the directory and its sub-directories, comparing localization string variables from the view with the locale file(ie en.json) key/value pairs
 
 
+### Install the package - "grunt-commandl10n"
 ```shell
 npm install grunt-commandl10n --save-dev
 ```
 
-Once the plugin has been installed, add this line to your Gruntfile:
-
+### Load the task - "grunt-commandl10n"
 ```js
 grunt.loadNpmTasks('grunt-commandl10n');
 ```
 
-### Add the task - "commandL10n"
-Register a new task
+### Register the task - "commandL10n"
 ```js
 grunt.registerTask('L10n', ['commandL10n:files']);
 ```
@@ -44,10 +43,9 @@ grunt.initConfig({
 ```
 
 ### More Information
-Right now, don't worry about the options unless you want the resulting json to be written to a new file or folder.
-You do however, have to set the path to your localization file (ie en.json, es.json  en-au.json) and the path to your view folder in the gruntfile.js.
+You do have to set the path to your localization file (ie en.json, es.json  en-au.json) and the path to your view folder in the connfiguration
+Unless you want the resulting cleaned up json to be written to a new file or folder, don't worry about the options object in the configuration.
 
-This utility compares the localization variables from your view read with localization key/value pairs from the locale file read. The write path is optional.
 
 ### Running from the command line
 ##### npm install and link
