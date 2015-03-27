@@ -42,7 +42,8 @@ grunt.initConfig({
 ```
 
 ### More Information
-You do have to set the path to your localization file (ie en.json, es.json  en-au.json) and the path to your view folder in the connfiguration
+You do have to set the path to your localization file (ie en.json, es.json  en-au.json) and the path to your view folder in the connfiguration.
+
 Unless you want the resulting cleaned up json to be written to a new file or folder, don't worry about the options object in the configuration.
 
 
