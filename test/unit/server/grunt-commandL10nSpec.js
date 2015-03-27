@@ -32,43 +32,74 @@ describe('Grunt task identifies unused localization key/value pairs', function()
 			mtime: 'Tue Sep 21 2010',
 			ctime: 'Sun Dec 28 2014'
 		};
+		env.paths = [{state: 'fulfilled', value:'path/to/file/1'},{state: 'fulfilled', value:'path/to/file/2'}];
+
+		env.viewcode = 'div(class="modal-body")ul(style="list-style:none;padding:0;margin:0")li';
 
 		env.walker = sinon.stub();
 		env.fs = {
-			stat: sinon.stub()
+			stat: sinon.stub(),
+			readFile: sinon.stub()
 		};
-		env.fs.stat.returns(env.stats);
+		env.fs.stat.yields(env.paths);
+		env.fs.readFile.yields(env.viewcode);
 
+		env.grunt = {
+			registerMultiTask: sinon.stub(),
+			file: {
+				read: sinon.stub()
+			}
+		};
+		env.grunt.registerMultiTask.returns(env.locales);
+		env.grunt.file.read.returns(env.locales);
 		env.commandL10n = sandbox.require('../../../tasks/commandL10n', {
+			requires: {
+				'fs': env.fs,
+				'grunt': env.grunt
+			}
+		});
+
+		env.lib = {};
+		env.lib.commandL10n = sandbox.require('../../../lib/commandL10n', {
 			requires: {
 				'fs': env.fs
 			}
 		});
-		env.grunt = {
-			registerMultiTask: sinon.stub()
-		};
-		env.grunt.registerMultiTask.returns(env.locales);
-
 	});
 
 	describe('Testing Grunt Config File', function() {
 		beforeEach(function() {
-			var keysintersect = 'commandL10n';
-			var localearray = ['key1:value1','key2:value2','key3:value3'];
-			var localefilepath = 'path/to/locale/folder';
-			var writefilepath = 'path/to/write/writefilepath';
-
-			env.grunt.registerMultiTask('commandL10n', 'Identifies unused localization key/value pairs in a project', function () {})
-
+			env.commandL10n(env.grunt);
 		});
 		describe('Register grunt task commandL10n', function() {
-
 			it('should expect grunt to exist', function() {
 				expect(env.grunt).to.exist;
 			});
-
 			it('should have called grunt.registerMultiTask one time', function() {
 				expect(env.grunt.registerMultiTask).to.have.been.calledOnce;
+			});
+		});
+	});
+
+
+	describe('Testing main lib/commandL10n module', function() {
+		beforeEach(function() {
+			var files = ['file/path/1', 'file/path/2'];
+			var locales = ['key1','key2'];
+			var localearray = ['key1:value1','key2:value2','key3:value3'];
+			var localefilepath = 'path/to/locale/folder';
+			var writefilepath = 'path/to/write/writefilepath';
+			env.lib.commandL10n(files, locales, localearray, localefilepath, writefilepath)(env.grunt);
+		});
+		describe('calling lib/commandL10n module', function() {
+			it('should expect module to exist', function() {
+				expect(env.lib.commandL10n).to.exist;
+			});
+			it('should have called fs.stat two times', function() {
+				expect(env.fs.stat).to.have.been.calledTwice;
+			});
+			it('should have called fs.readFile two times', function() {
+				expect(env.fs.readFile).to.have.been.calledTwice;
 			});
 		});
 	});
