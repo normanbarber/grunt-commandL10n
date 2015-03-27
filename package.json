@@ -1,6 +1,6 @@
 {
 	"name": "grunt-commandl10n",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Identifies unused localization key/value pairs in a project",
 	"repository":{
 		"type": "git",
