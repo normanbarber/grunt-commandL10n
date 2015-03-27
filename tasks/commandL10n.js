@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 			 only need the key to compare with the locale vars pulled from the view code */
 			return _.map(locales, function(str) {
 				var locale = str.replace(/"/g,"'");
-				locale = locale.match(/(.*)[\:]/)[0].replace(':', '').replace(/^\s+|\s+$/g, "").replace(/\\r\\n|\\/g,"").replace(/^\s+|\s+$/g, "")
+				locale = locale.match(/(.*)[\:]/)[0].replace(':', '').replace(/^\s+|\s+$/g, "").replace(/\\r\\n|\\|"|'|\{|\}/g,"").replace(/^\s+|\s+$/g, "");
 				return locale;
 			});
 		}
@@ -30,24 +30,15 @@ module.exports = function (grunt) {
 		localefilepath = helpers.pathCleanUp(localefilepath);
 		writefilepath = helpers.pathCleanUp(writefilepath);
 
-		var files = [];
-		var localecode = grunt.file.read(localefilepath).replace(/"/g,"'").replace(/\r|\n|\t|\{|\}/g,"");
-		var code = localecode.replace(/\r|\n|\t|^\s+|\s+$\{|\}/g,"");
-		var localearray = code.split(',');
+		var localecode = grunt.file.read(localefilepath);
+		var localearray = localecode.split(',');
 		var locales = helpers.cleanEnJSONLocales(localearray);
-
-		locales = _.map(locales, function(locale){
-			return locale.replace(/'|"/g,"")
-		});
 
 		walkhelper(this.data.view.path,function(files){
 			commandL10n(files, locales, localearray, localefilepath, writefilepath)(grunt)
-				.fin(function(data){
+				.fin(function(){
 					console.log('\nresults returned and written successfully');
 					console.log('\nresults written to: ' + writefilepath);
-					if(data)
-						console.log(data);
-
 				})
 				.fail(function(error){
 					console.log('error');
